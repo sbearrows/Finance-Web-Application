@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+<table class = "table">
+    <thead>
+        <tr>
+            <th scope="col">stocks</th>
+            <th scope="col">shares</th>
+            <th scope="col">price</th>
+            <th scope="col">cost</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in rows %}
+            <tr>
+                <td>{{ row["stock"] }}</td>
+                <td>{{ row["shares"] }}</td>
+                <td>{{ row["priced"] }}</td>
+                <td>{{ row["cost"] }}</td>
+            </tr>
+        {% endfor %}
+        <tr>
+            <td></td>
+            <td></td>
+            <td>Remaining Balance:</td>
+            <td>{{ balance }}</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td>Total:</td>
+            <td>{{ total_holdings }}</td>
+        </tr>
+    </tbody>
+</table>
+{% endblock %}

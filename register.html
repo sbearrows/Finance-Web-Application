@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block main %}
+    <form action="/register" method="post" id = "register">
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" name="username" id = "username" placeholder="Username" type="text">
+        </div>
+        <div class="form-group">
+            <input class="form-control" name="password" placeholder="Password" type="password" id = "password">
+            <small id="text" class="form-text text-muted">Password must have two numbers.</small>
+        </div>
+        <div class="form-group">
+            <input class="form-control" name="confirmation" placeholder="Confirmation" type="password">
+        </div>
+        <button class="btn btn-primary" type="submit">Register</button>
+    </form>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript">
+    $('document').ready(function(){
+        $('form').on('submit', function(prevent) {
+            prevent.preventDefault();
+            var username = $("#username").val();
+            $.get('/check?username=' + username, function(data) {
+                if (data == false){
+                    alert('username is taken');
+                }
+                else{
+                    var password = $("#password").val()
+                    $.get('/password?password=' + password, function(data) {
+                    if (data == false){
+                        alert('Password must have two numbers');
+                    }
+                    else{
+                        document.getElementById('register').submit();
+                    }
+                    });
+                }
+            });
+
+        });
+    });
+    </script>
+
+{% endblock %}

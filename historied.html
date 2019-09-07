@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+<form action="/history" method="get">
+<table class = "table">
+    <thead>
+        <tr>
+            <th scope="col">stocks</th>
+            <th scope="col">shares</th>
+            <th scope="col">price</th>
+            <th scope="col">date</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for his in history %}
+            <tr>
+                <td>{{ his["stock"] }}</td>
+                <td>{{ his["shares"] }}</td>
+                <td>{{ his["price"] }}</td>
+                <td>{{ his["date"] }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
